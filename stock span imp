@@ -1,0 +1,20 @@
+#include<stack>
+int* stockSpan(int *price, int size){
+stack<int>s;
+int*ans= new int[size];
+s.push(0);
+ans[0]=1;
+for(int i=1; i<size; i++){
+while(!s.empty() && price[s.top()]<price[i]){
+s.pop();
+}
+if(!s.empty()){
+ans[i]= (i-s.top());
+}
+else{
+ans[i]= i+1;
+}
+s.push(i);
+}
+return ans;
+}
